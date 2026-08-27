@@ -6,7 +6,7 @@ múltiplos provedores, por HTTP e por fila, com garantias de correção monetár
 idempotência persistente e consistência entre saldo materializado e ledger.
 
 As decisões técnicas, com alternativas descartadas e limitações conhecidas, estão
-em [`ARCHITECTURE.md`](./ARCHITECTURE.md).
+em [`ARCHITECTURE.md`](./docs/ARCHITECTURE.md).
 
 ## Stack
 
