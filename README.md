@@ -16,6 +16,10 @@ um painel web para consultar carteiras.
 > duplicadas, concorrentes ou fora de ordem em mudanças de saldo atômicas,
 > rastreáveis e idempotentes.
 
+
+<img width="1261" height="753" alt="image" src="https://github.com/user-attachments/assets/ccf66a60-877e-436e-ae24-5ef5e0875bcc" />
+
+
 ## O problema que o projeto resolve
 
 Integrações financeiras não entregam sempre uma solicitação uma única vez nem
