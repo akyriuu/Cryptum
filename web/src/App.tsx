@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import ReconciliationPage from './ReconciliationPage';
+import TransactionsPage from './TransactionsPage';
 import WalletsPage from './WalletsPage';
 import { checkApiHealth } from './api';
 
 type ApiStatus = 'checking' | 'online' | 'offline';
-type Page = 'overview' | 'wallets';
+type Page = 'overview' | 'wallets' | 'transactions' | 'reconciliation';
 
 const navigation = [
   { icon: '▦', label: 'Visão geral', page: 'overview' as const },
   { icon: '◉', label: 'Carteiras', page: 'wallets' as const },
-  { icon: '↔', label: 'Transações', page: null },
-  { icon: '◎', label: 'Reconciliação', page: null },
+  { icon: '↔', label: 'Transações', page: 'transactions' as const },
+  { icon: '◎', label: 'Reconciliação', page: 'reconciliation' as const },
 ];
 
 function App() {
@@ -23,7 +25,10 @@ function App() {
     };
 
     void checkApi();
-    const interval = window.setInterval(checkApi, 15000);
+
+    const interval = window.setInterval(() => {
+      void checkApi();
+    }, 15000);
 
     return () => window.clearInterval(interval);
   }, []);
@@ -34,6 +39,13 @@ function App() {
     offline: 'API indisponível',
   }[apiStatus];
 
+  const pageLabel = {
+    overview: 'Visão geral',
+    wallets: 'Carteiras',
+    transactions: 'Transações',
+    reconciliation: 'Reconciliação',
+  }[page];
+
   return (
     <div className="app-shell">
       <aside className="sidebar">
@@ -41,64 +53,66 @@ function App() {
           className="brand"
           type="button"
           onClick={() => setPage('overview')}
-          aria-label="Ir para a visão geral"
+          aria-label="Ir para a visão geral do CRYPTUM"
         >
-          <span className="brand-mark">C</span>
-          <span>Cryptum</span>
+          <img className="brand-logo" src="/cryptum-logo.svg" alt="CRYPTUM" />
         </button>
 
         <div className="workspace-label">ESPAÇO DE TRABALHO</div>
+
         <button className="workspace-switcher" type="button">
-          <span className="workspace-avatar">D</span>
+          <span className="workspace-avatar">C</span>
+
           <span className="workspace-copy">
-            <strong>Demo workspace</strong>
+            <strong>CRYPTUM</strong>
             <small>Ambiente local</small>
           </span>
+
           <span className="switcher-chevron">⌄</span>
         </button>
 
         <div className="nav-label">OPERAÇÃO</div>
+
         <nav className="navigation" aria-label="Navegação principal">
           {navigation.map((item) => {
             const active = item.page === page;
 
-            return item.page ? (
+            return (
               <button
                 className={`nav-item${active ? ' active' : ''}`}
                 key={item.label}
                 type="button"
-                onClick={() => setPage(item.page!)}
+                onClick={() => setPage(item.page)}
                 aria-current={active ? 'page' : undefined}
               >
-                <span className="nav-icon">{item.icon}</span>
+                <span className="nav-icon" aria-hidden="true">
+                  {item.icon}
+                </span>
                 <span>{item.label}</span>
               </button>
-            ) : (
-              <div
-                className="nav-item disabled"
-                key={item.label}
-                aria-disabled="true"
-              >
-                <span className="nav-icon">{item.icon}</span>
-                <span>{item.label}</span>
-                <span className="nav-soon">em breve</span>
-              </div>
             );
           })}
         </nav>
 
         <div className="sidebar-bottom">
           <a className="help-link" href="mailto:suporte@exemplo.com">
-            <span className="help-icon">?</span>
+            <span className="help-icon" aria-hidden="true">
+              ?
+            </span>
             Ajuda e suporte
           </a>
+
           <div className="user-card">
             <span className="user-avatar">MC</span>
+
             <span className="user-copy">
               <strong>Minha conta</strong>
               <small>Administrador</small>
             </span>
-            <span className="user-more">···</span>
+
+            <span className="user-more" aria-hidden="true">
+              ···
+            </span>
           </div>
         </div>
       </aside>
@@ -106,13 +120,15 @@ function App() {
       <main className="main-content">
         <header className="topbar">
           <div className="breadcrumb">
-            <span>Demo workspace</span>
-            <span className="breadcrumb-divider">/</span>
-            <strong>{page === 'overview' ? 'Visão geral' : 'Carteiras'}</strong>
+            <span>CRYPTUM</span>
+            <span className="breadcrumb-divider" aria-hidden="true">
+              /
+            </span>
+            <strong>{pageLabel}</strong>
           </div>
 
           <div className={`connection-status ${apiStatus}`}>
-            <span className="status-dot" />
+            <span className="status-dot" aria-hidden="true" />
             {statusLabel}
           </div>
         </header>
@@ -120,6 +136,10 @@ function App() {
         <div className="page-content">
           {page === 'wallets' ? (
             <WalletsPage onBack={() => setPage('overview')} />
+          ) : page === 'transactions' ? (
+            <TransactionsPage onBack={() => setPage('overview')} />
+          ) : page === 'reconciliation' ? (
+            <ReconciliationPage onBack={() => setPage('overview')} />
           ) : (
             <>
               <section className="page-heading">
@@ -130,12 +150,13 @@ function App() {
                     Uma visão clara do estado da sua operação.
                   </p>
                 </div>
+
                 <button
                   className="primary-button"
                   type="button"
                   onClick={() => setPage('wallets')}
                 >
-                  <span>＋</span>
+                  <span aria-hidden="true">＋</span>
                   Explorar carteiras
                 </button>
               </section>
@@ -148,6 +169,7 @@ function App() {
                     Resumo agregado indisponível
                   </div>
                 </article>
+
                 <article className="metric-card">
                   <div className="metric-label">Transações hoje</div>
                   <div className="metric-value">—</div>
@@ -155,6 +177,7 @@ function App() {
                     Aguardando endpoint de listagem
                   </div>
                 </article>
+
                 <article className="metric-card">
                   <div className="metric-label">Pendências</div>
                   <div className="metric-value">—</div>
@@ -162,10 +185,14 @@ function App() {
                     Aguardando endpoint de listagem
                   </div>
                 </article>
+
                 <article className="metric-card">
                   <div className="metric-label">Estado da API</div>
                   <div className="metric-value metric-status">
-                    <span className={`status-dot ${apiStatus}`} />
+                    <span
+                      className={`status-dot ${apiStatus}`}
+                      aria-hidden="true"
+                    />
                     {apiStatus === 'online'
                       ? 'Conectada'
                       : apiStatus === 'offline'
@@ -184,19 +211,25 @@ function App() {
                       <p>Movimentações registradas nas carteiras</p>
                     </div>
                   </div>
+
                   <div className="empty-state">
-                    <span className="empty-icon">↔</span>
-                    <strong>Consulte uma carteira para ver o ledger</strong>
+                    <span className="empty-icon" aria-hidden="true">
+                      ↔
+                    </span>
+
+                    <strong>Consulte uma transação ou carteira</strong>
+
                     <p>
-                      O histórico detalhado está disponível ao abrir uma
-                      carteira.
+                      Consulte uma operação pela referência externa ou abra o
+                      ledger de uma carteira.
                     </p>
+
                     <button
                       className="quiet-button"
                       type="button"
-                      onClick={() => setPage('wallets')}
+                      onClick={() => setPage('transactions')}
                     >
-                      Ir para carteiras <span>→</span>
+                      Consultar transações <span aria-hidden="true">→</span>
                     </button>
                   </div>
                 </article>
@@ -208,22 +241,34 @@ function App() {
                       <p>Estado reportado pela API</p>
                     </div>
                   </div>
+
                   <div className="health-row">
                     <span className="health-name">
-                      <span className="service-icon">A</span>
+                      <span className="service-icon" aria-hidden="true">
+                        A
+                      </span>
                       API
                     </span>
+
                     <span className={`health-label ${apiStatus}`}>
                       {statusLabel}
                     </span>
                   </div>
+
                   <div className="health-row">
                     <span className="health-name">
-                      <span className="service-icon database">▤</span>
+                      <span
+                        className="service-icon database"
+                        aria-hidden="true"
+                      >
+                        ▤
+                      </span>
                       Banco e fila
                     </span>
+
                     <span className="health-label">Health check</span>
                   </div>
+
                   <p className="health-note">
                     Atualizado automaticamente a cada 15 segundos.
                   </p>
@@ -235,21 +280,27 @@ function App() {
                 type="button"
                 onClick={() => setPage('wallets')}
               >
-                <span className="callout-icon">◉</span>
+                <span className="callout-icon" aria-hidden="true">
+                  ◉
+                </span>
+
                 <span className="callout-copy">
                   <strong>Precisa investigar uma carteira?</strong>
                   <small>
-                    Consulte o saldo e percorra os lançamentos do ledger.
+                    Consulte saldo e lançamentos registrados no ledger.
                   </small>
                 </span>
-                <span className="callout-arrow">→</span>
+
+                <span className="callout-arrow" aria-hidden="true">
+                  →
+                </span>
               </button>
             </>
           )}
 
           <footer className="page-footer">
             <span>
-              Cryptum <span className="footer-version">Painel local</span>
+              CRYPTUM <span className="footer-version">Painel local</span>
             </span>
             <span>Dados servidos pela API local</span>
           </footer>

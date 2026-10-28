@@ -35,18 +35,10 @@
   cursor: pointer;
 }
 
-.brand-mark {
-  display: grid;
-  width: 30px;
-  height: 30px;
-  place-items: center;
-  border-radius: 9px;
-  background: #0071e3;
-  color: white;
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0;
-  box-shadow: 0 3px 8px rgb(0 113 227 / 22%);
+.brand-logo {
+  display: block;
+  width: 142px;
+  height: auto;
 }
 
 .workspace-label,
@@ -687,10 +679,8 @@ h1 {
     font-size: 16px;
   }
 
-  .brand-mark {
-    width: 26px;
-    height: 26px;
-    font-size: 14px;
+  .brand-logo {
+    width: 150px;
   }
 
   .workspace-label,

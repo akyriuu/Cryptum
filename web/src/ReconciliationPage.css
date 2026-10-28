@@ -1,0 +1,320 @@
+.reconciliation-page {
+  animation: recon-enter 220ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes recon-enter {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.recon-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 24px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: #0071e3;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.recon-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+  border: 1px solid rgb(0 0 0 / 5%);
+  border-radius: 13px;
+  background: rgb(255 255 255 / 86%);
+  padding: 16px;
+  box-shadow: 0 4px 14px rgb(0 0 0 / 3%);
+}
+
+.recon-input-wrap {
+  display: grid;
+  flex: 1;
+  gap: 7px;
+}
+
+.recon-input-wrap label {
+  color: #424245;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.recon-input-wrap input {
+  width: 100%;
+  height: 38px;
+  border: 1px solid #d2d2d7;
+  border-radius: 9px;
+  background: rgb(255 255 255 / 90%);
+  padding: 0 11px;
+  color: #1d1d1f;
+  font-size: 10px;
+  outline: none;
+  transition:
+    border-color 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.recon-input-wrap input:focus {
+  border-color: #0071e3;
+  box-shadow: 0 0 0 3px rgb(0 113 227 / 13%);
+}
+
+.recon-submit {
+  min-height: 38px;
+  border: 0;
+  border-radius: 999px;
+  background: #0071e3;
+  padding: 0 16px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 100ms ease,
+    background 140ms ease;
+}
+
+.recon-submit:hover {
+  background: #0077ed;
+}
+
+.recon-submit:active {
+  transform: scale(0.98);
+}
+
+.recon-submit:disabled {
+  opacity: 0.58;
+  cursor: wait;
+}
+
+.recon-explainer {
+  margin: 11px 2px 0;
+  color: #86868b;
+  font-size: 9px;
+  line-height: 1.55;
+}
+
+.recon-error {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 17px;
+  border: 1px solid #f1c7c7;
+  border-radius: 10px;
+  background: #fff5f5;
+  padding: 12px 14px;
+  color: #a22d2d;
+  font-size: 10px;
+}
+
+.recon-message-icon {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: #f8dddd;
+  font-weight: 700;
+}
+
+.recon-result {
+  margin-top: 22px;
+  overflow: hidden;
+  border: 1px solid rgb(0 0 0 / 6%);
+  border-radius: 15px;
+  background: rgb(255 255 255 / 88%);
+  box-shadow: 0 8px 26px rgb(0 0 0 / 5%);
+  animation: recon-result-in 280ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes recon-result-in {
+  from {
+    opacity: 0.6;
+    transform: translateY(7px) scale(0.99);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.recon-result.consistent {
+  border-color: rgb(48 164 108 / 20%);
+}
+
+.recon-result.mismatch {
+  border-color: rgb(220 153 31 / 28%);
+}
+
+.recon-result-head {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 19px 20px;
+}
+
+.recon-result-symbol {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.recon-result-symbol.good {
+  background: #e9f7ef;
+  color: #248a57;
+}
+
+.recon-result-symbol.bad {
+  background: #fff2d9;
+  color: #a67412;
+}
+
+.recon-result-head .eyebrow {
+  margin-bottom: 4px;
+  font-size: 8px;
+}
+
+.recon-result-head h2 {
+  color: #1d1d1f;
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+
+.recon-result-head p {
+  margin-top: 4px;
+  color: #6e6e73;
+  font-size: 10px;
+}
+
+.recon-values {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 0 20px 18px;
+}
+
+.recon-value-card {
+  min-width: 0;
+  border: 1px solid rgb(0 0 0 / 5%);
+  border-radius: 11px;
+  background: rgb(245 245 247 / 65%);
+  padding: 13px;
+}
+
+.recon-value-card span {
+  display: block;
+  color: #6e6e73;
+  font-size: 9px;
+}
+
+.recon-value-card strong {
+  display: block;
+  overflow-wrap: anywhere;
+  margin-top: 7px;
+  color: #1d1d1f;
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+
+.recon-value-card.difference strong {
+  color: #248a57;
+}
+
+.recon-result.mismatch .recon-value-card.difference strong {
+  color: #b07812;
+}
+
+.recon-result-foot {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border-top: 1px solid rgb(0 0 0 / 5%);
+  padding: 12px 20px;
+  color: #86868b;
+  font-size: 9px;
+}
+
+.recon-result-foot code {
+  overflow: hidden;
+  color: #515257;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recon-entry-count {
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+@media (max-width: 650px) {
+  .recon-form {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .recon-submit {
+    min-height: 37px;
+  }
+
+  .recon-values {
+    grid-template-columns: 1fr;
+  }
+
+  .recon-result-foot {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .recon-entry-count {
+    margin-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reconciliation-page,
+  .recon-result {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .recon-form,
+  .recon-result {
+    background: #fff;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .recon-form,
+  .recon-result,
+  .recon-value-card {
+    border-color: #77787d;
+  }
+
+  .recon-explainer {
+    color: #515257;
+  }
+}
