@@ -1,5 +1,12 @@
 # Cryptum
 
+
+
+<img width="166" height="62" alt="image" src="https://github.com/user-attachments/assets/7c1490cc-5a0c-400f-bd48-700114e1a761" />
+
+
+
+
 **Cryptum é um serviço de carteiras e processamento financeiro para operações de
 apostas.** Ele recebe transações de diferentes provedores, aplica as regras de
 negócio de forma segura sob concorrência e mantém o saldo da carteira coerente
