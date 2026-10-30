@@ -24,14 +24,11 @@
   display: flex;
   width: fit-content;
   align-items: center;
-  gap: 10px;
+  justify-content: flex-start;
   margin: 0 0 34px 3px;
   border: 0;
   background: transparent;
-  color: #1d1d1f;
-  font-size: 19px;
-  font-weight: 650;
-  letter-spacing: -0.04em;
+  padding: 0;
   cursor: pointer;
 }
 
@@ -88,8 +85,8 @@
   flex: 0 0 auto;
   place-items: center;
   border-radius: 8px;
-  background: #e8f2fc;
-  color: #0071e3;
+  background: #fff5cf;
+  color: #927000;
   font-size: 12px;
   font-weight: 700;
 }
@@ -165,8 +162,8 @@ button.nav-item:hover {
 }
 
 .nav-item.active {
-  background: #e8f2fc;
-  color: #0066cc;
+  background: #fff5cf;
+  color: #745900;
   font-weight: 620;
 }
 
@@ -183,7 +180,7 @@ button.nav-item:hover {
 }
 
 .nav-item.active .nav-icon {
-  color: #0071e3;
+  color: #927000;
 }
 
 .nav-soon {
@@ -358,20 +355,20 @@ h1 {
   gap: 7px;
   border: 0;
   border-radius: 999px;
-  background: #0071e3;
+  background: #f2c438;
   padding: 0 15px;
-  color: white;
+  color: #27220e;
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 650;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgb(0 113 227 / 18%);
+  box-shadow: 0 2px 6px rgb(190 147 0 / 18%);
   transition:
     background-color 140ms ease,
     transform 100ms ease;
 }
 
 .primary-button:hover {
-  background: #0077ed;
+  background: #f7d45d;
 }
 
 .primary-button span {
@@ -476,8 +473,8 @@ h1 {
   place-items: center;
   margin-bottom: 11px;
   border-radius: 12px;
-  background: #f1f6fc;
-  color: #0071e3;
+  background: #fff7d9;
+  color: #927000;
   font-size: 17px;
 }
 
@@ -502,7 +499,7 @@ h1 {
   margin-top: 13px;
   border: 0;
   background: transparent;
-  color: #0071e3;
+  color: #806300;
   font-size: 10px;
   font-weight: 600;
   cursor: pointer;
@@ -537,8 +534,8 @@ h1 {
   height: 23px;
   place-items: center;
   border-radius: 7px;
-  background: #e8f2fc;
-  color: #0071e3;
+  background: #fff5cf;
+  color: #806300;
   font-size: 10px;
   font-weight: 650;
 }
@@ -572,12 +569,12 @@ h1 {
   align-items: center;
   gap: 12px;
   margin-top: 14px;
-  border: 1px solid rgb(0 113 227 / 10%);
+  border: 1px solid rgb(190 147 0 / 16%);
   border-radius: 13px;
   background: linear-gradient(
     105deg,
     rgb(255 255 255 / 94%),
-    rgb(242 248 255 / 92%)
+    rgb(255 250 228 / 94%)
   );
   padding: 14px 16px;
   text-align: left;
@@ -589,7 +586,7 @@ h1 {
 }
 
 .wallet-callout:hover {
-  border-color: rgb(0 113 227 / 24%);
+  border-color: rgb(190 147 0 / 32%);
 }
 
 .callout-icon {
@@ -599,8 +596,8 @@ h1 {
   flex: 0 0 auto;
   place-items: center;
   border-radius: 10px;
-  background: #e8f2fc;
-  color: #0071e3;
+  background: #fff3c1;
+  color: #806300;
   font-size: 16px;
 }
 
@@ -622,7 +619,7 @@ h1 {
 }
 
 .callout-arrow {
-  color: #0071e3;
+  color: #806300;
   font-size: 15px;
 }
 
@@ -676,11 +673,10 @@ h1 {
 
   .brand {
     margin: 0 0 8px 2px;
-    font-size: 16px;
   }
 
   .brand-logo {
-    width: 150px;
+    width: 126px;
   }
 
   .workspace-label,
@@ -718,7 +714,7 @@ h1 {
 
   .topbar {
     position: sticky;
-    top: 94px;
+    top: 87px;
     height: 46px;
     padding: 0 17px;
   }
@@ -763,7 +759,7 @@ h1 {
   }
 
   .topbar {
-    top: 91px;
+    top: 84px;
   }
 
   .connection-status {
@@ -789,7 +785,8 @@ h1 {
   }
 
   .metric-card,
-  .panel {
+  .panel,
+  .wallet-callout {
     background: #fff;
   }
 }
@@ -808,5 +805,16 @@ h1 {
   .panel-heading p,
   .health-note {
     color: #515257;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
